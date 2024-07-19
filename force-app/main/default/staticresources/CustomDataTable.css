@@ -1,4 +1,8 @@
-.slds-grid .slds-hyphenate {
+tr.slds-hint-parent {
+    height: 5rem;
+}
+
+/* .slds-grid .slds-hyphenate {
     width: 100%
 }
 
@@ -31,6 +35,5 @@
     position: fixed !important;
     max-height: 120px;
     max-width: fit-content;
-    overflow: auto;
-  
-}
+    overflow: auto; 
+} */

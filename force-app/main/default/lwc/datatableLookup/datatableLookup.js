@@ -1,6 +1,4 @@
 import { LightningElement, api, wire } from 'lwc';
-import { loadStyle } from "lightning/platformResourceLoader";
-import CustomDataTableResource from "@salesforce/resourceUrl/CustomDataTable";
 import { getRecord } from "lightning/uiRecordApi";
 
 export default class DatatableLookup extends LightningElement {
@@ -33,48 +31,18 @@ export default class DatatableLookup extends LightningElement {
         return (this.record.data != null && this.record.data.fields[this.getFieldName()].value) ? '/' + this.value : '';
     }
 
-    
-   
-
-    
-    renderedCallback() {
-        Promise.all([
-            loadStyle(this, CustomDataTableResource),
-        ]).then(() => { });
-        if (!this.guid) {
-            this.guid = this.template.querySelector('.lookupBlock').getAttribute('id');
-            
-            this.dispatchEvent(
-                new CustomEvent('itemregister', {
-                    bubbles: true,
-                    composed: true,
-                    detail: {
-                        callbacks: {
-                            reset: this.reset
-                        },
-                        template: this.template,
-                        guid: this.guid,
-                        name: 'c-datatable-lookup'
-                    }
-                })
-            );
-        }
-    }
-
     handleChange(event) {
         event.preventDefault();
         this.value = event.detail.value[0];
         this.showLookup = this.value != null ? false : true;
         this.dispatchCustomEvent('valuechange', this.context, this.value, this.label, this.name);
     }
-
     
     reset = (context) => {
         if (this.context !== context) {
             this.showLookup = false;
         }
     }
-
     
     handleClick(event) {
         event.preventDefault();

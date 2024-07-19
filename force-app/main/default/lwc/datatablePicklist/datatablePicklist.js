@@ -1,6 +1,4 @@
 import { LightningElement, api } from 'lwc';
-import { loadStyle } from 'lightning/platformResourceLoader';
-import CustomDataTableResource from '@salesforce/resourceUrl/CustomDataTable';
 
 export default class DatatablePicklist2 extends LightningElement {
 
@@ -13,29 +11,6 @@ export default class DatatablePicklist2 extends LightningElement {
     @api name;
     showPicklist = false;
     picklistValueChanged = false;
-
-    renderedCallback() {
-        Promise.all([
-            loadStyle(this, CustomDataTableResource),
-        ]).then(() => { });
-        if (!this.guid) {
-            this.guid = this.template.querySelector('.picklistBlock').getAttribute('id');
-            this.dispatchEvent(
-                new CustomEvent('itemregister', {
-                    bubbles: true,
-                    composed: true,
-                    detail: {
-                        callbacks: {
-                            reset: this.reset,
-                        },
-                        template: this.template,
-                        guid: this.guid,
-                        name: 'c-datatable-picklist'
-                    }
-                })
-            );
-        }
-    }
 
     dispatchCustomEvent(eventName, context, value, label, name) {
         this.dispatchEvent(new CustomEvent(eventName, {
