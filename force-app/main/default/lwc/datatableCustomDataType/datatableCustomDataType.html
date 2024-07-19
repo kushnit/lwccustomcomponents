@@ -1,19 +1,14 @@
 <template>
-    <lightning-card
-        title="Datatable Custom Data Type"
-        icon-name="custom:custom62"
-    >
-        <div class="slds-var-m-around_medium">
+        <div class="slds-var-m-around_medium" style="background:red;">
             <template lwc:if={contacts.data}>
                 <c-custom-data-types
                     key-field="Id"
                     data={contacts.data}
                     columns={columns}
-                    hide-checkbox-column="true"
-                    onrecordpick = {handleRecordPick}   
+                    
                 >
                 </c-custom-data-types>
             </template>
         </div>
-    </lightning-card>
 </template>
+<!-- hide-checkbox-column="true" -->
